@@ -1,9 +1,6 @@
-
 import React, { useState, useEffect } from 'react'
-import { hydrate } from 'react-dom'
 import Loading from './Loading'
 import Tours from './Tours'
-
 const url = 'https://course-api.com/react-tours-project'
 
 function App() {
@@ -37,7 +34,18 @@ function App() {
       </main>
     )
   }
-
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className='title'>
+          <h2>no tours left</h2>
+          <button className='btn' onClick={() => fetchTours()}>
+            refresh
+          </button>
+        </div>
+      </main>
+    )
+  }
   return (
     <main>
       <Tours tours={tours} removeTour={removeTour} />
